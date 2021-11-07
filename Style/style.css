@@ -96,12 +96,12 @@ i {
 .info-city p {
   padding: 0.5rem;
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: regular;
 }
 
 .temp h3 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: #dbedf3;
 }
 

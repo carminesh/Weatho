@@ -1,4 +1,6 @@
-const apiKey = "insert your api key";
+const apiKey = "yourKey";
+const apiTimeKey = "yourKey";
+
 const weatherContainer = document.querySelector('.weather-container');
 const form = document.querySelector('.search-weather');
 const inputText = document.querySelector('.search-input');
@@ -35,17 +37,32 @@ async function searchWeather(city) {
 
     const data = await dataFetch.json();
 
+    const time = await searchTime(data.coord.lat, data.coord.lon);
     displayWeather(data);
+}
+
+async function searchTime(latitude, longitude) {
+
+    const dataFetch = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    });
+
+    const data = await dataFetch.json();
+
+    console.log(data);
+    return data;
+
 }
 
 
 function displayWeather(dataWeather) {
 
-    console.log(dataWeather);
-
     const name = dataWeather.name;
     const country = dataWeather.sys.country;
-    const timezone = dataWeather.sys.timezone;
+    const timezone = dataWeather.timezone;
     const icon = dataWeather.weather[0].icon;
     const temp = dataWeather.main.temp;
     const mainDescription = dataWeather.weather[0].main;
@@ -54,7 +71,6 @@ function displayWeather(dataWeather) {
     const windSpeed = dataWeather.wind.speed;
 
 
-    console.log(dataWeather);
 
     infoDiv.classList.add('info-div');
 
@@ -64,7 +80,7 @@ function displayWeather(dataWeather) {
             <div class="info-city">
                 <div class="city-and-date">
                     <h3><i class="fas fa-map-marker-alt"></i>${name}, ${country}</h3>
-                    <p>7th November - 6.04 A.M</p>
+                    <p>lorem ipsum</p>
                 </div>
                 <div class="temp">
                     <h3>${temp} °C</h3>
@@ -95,11 +111,5 @@ function displayWeather(dataWeather) {
 }
 
 function cleanSection() {
-    infoDiv.innerHTML = "";
-}
-
-function getTimeZone(timezone) {
-    var d = new Date((new Date().getTime())-timezone*1000);
-    d.toISOString();
-    return d;
+    weatherContainer.innerHTML = '';
 }
