@@ -1,5 +1,5 @@
-const apiKey = "your key";
-const apiTimeKey = "your key";
+const apiKey = "insert your key";
+const apiTimeKey = "insert your key";
 
 const weatherContainer = document.querySelector('.weather-container');
 const form = document.querySelector('.search-weather');
@@ -59,7 +59,6 @@ async function searchTime(latitude, longitude) {
 
 }
 
-
 function displayWeather(dataWeather) {
 
     const name = dataWeather.name;
@@ -90,7 +89,7 @@ function displayWeather(dataWeather) {
 
             <div class="info-weather">
                 <div class="icon">
-                    <img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Icon">
+                    <img src="../Media/${icon}.svg" alt="Weather Icon">
                 </div>
                 <div class="description">
                     <h4>${mainDescription}</h4>
