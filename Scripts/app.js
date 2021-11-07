@@ -1,12 +1,14 @@
-const apiKey = "yourKey";
-const apiTimeKey = "yourKey";
+const apiKey = "your key";
+const apiTimeKey = "your key";
 
 const weatherContainer = document.querySelector('.weather-container');
 const form = document.querySelector('.search-weather');
 const inputText = document.querySelector('.search-input');
 const infoDiv = document.createElement('div');
 
+
 let cityName;
+let time;
 
 //Event listener section
 inputText.addEventListener('input', updateInput);
@@ -37,7 +39,7 @@ async function searchWeather(city) {
 
     const data = await dataFetch.json();
 
-    const time = await searchTime(data.coord.lat, data.coord.lon);
+    time = await searchTime(data.coord.lat, data.coord.lon);
     displayWeather(data);
 }
 
@@ -53,7 +55,7 @@ async function searchTime(latitude, longitude) {
     const data = await dataFetch.json();
 
     console.log(data);
-    return data;
+    return data.formatted;
 
 }
 
@@ -62,7 +64,6 @@ function displayWeather(dataWeather) {
 
     const name = dataWeather.name;
     const country = dataWeather.sys.country;
-    const timezone = dataWeather.timezone;
     const icon = dataWeather.weather[0].icon;
     const temp = dataWeather.main.temp;
     const mainDescription = dataWeather.weather[0].main;
@@ -80,7 +81,7 @@ function displayWeather(dataWeather) {
             <div class="info-city">
                 <div class="city-and-date">
                     <h3><i class="fas fa-map-marker-alt"></i>${name}, ${country}</h3>
-                    <p>lorem ipsum</p>
+                    <p>${time}</p>
                 </div>
                 <div class="temp">
                     <h3>${temp} °C</h3>
@@ -111,5 +112,5 @@ function displayWeather(dataWeather) {
 }
 
 function cleanSection() {
-    weatherContainer.innerHTML = '';
+    infoDiv.innerHTML = '';
 }
