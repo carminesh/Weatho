@@ -22,12 +22,11 @@ form.addEventListener('submit', e => {
 });
 
 //Function section
-
 function updateInput() {
     cityName = inputText.value;
 }
 
-
+//Fetch weather data from current weather API
 async function searchWeather(city) {
 
     const dataFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`, {
@@ -45,6 +44,8 @@ async function searchWeather(city) {
 
 }
 
+
+//Fetch time-info data from TimeZone API
 async function searchTime(latitude, longitude) {
 
     const dataFetch = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`, {
@@ -61,6 +62,7 @@ async function searchTime(latitude, longitude) {
 
 }
 
+//Build and load the component with the correct data
 function displayWeather(dataWeather) {
 
     const name = dataWeather.name;
@@ -113,15 +115,22 @@ function displayWeather(dataWeather) {
 
 }
 
-function cleanLoader() {
-    weatherContainer.removeChild(weatherContainer.childNodes[5]);  
-}
-
+//Clean up the main container
 function cleanSection() {
     infoDiv.innerHTML = '';
 }
 
-/*Animation section*/
+//Animation section
 
-gsap.from('#logo', {scale: 2, opacity:-1, duration: 1})
-gsap.from('.search-weather', {scale: 2, opacity:-1, duration: 1});
+var deviceWidth = window.matchMedia("(max-width: 767px)");
+
+if(deviceWidth.matches) {
+
+    var tl = gsap.timeline();
+    tl.from('.weather-container', {scale: 1.2, duration: 0.5, ease: 'Power2.easeInOut'})
+    tl.from('.weather-container', {y: 300, duration: 1, ease: 'Power2.easeInOut'});
+
+} else {
+    gsap.from('#logo', {scale: 2, opacity:-1, duration: 1, ease: 'Power2.easeInOut'})
+    gsap.from('.search-weather', {scale: 2, opacity:-1, duration: 1, ease: 'Power2.easeInOut'}); 
+}
