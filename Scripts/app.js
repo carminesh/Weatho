@@ -131,6 +131,7 @@ if(deviceWidth.matches) {
     tl.from('.weather-container', {y: 300, duration: 1, ease: 'Power2.easeInOut'});
 
 } else {
+    gsap.from('#wall', {opacity:-1, duration:2});
     gsap.from('#logo', {scale: 2, opacity:-1, duration: 1, ease: 'Power2.easeInOut'})
     gsap.from('.search-weather', {scale: 2, opacity:-1, duration: 1, ease: 'Power2.easeInOut'}); 
 }

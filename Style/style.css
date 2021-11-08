@@ -40,11 +40,12 @@ i {
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .search-input {
   padding: 0.5rem;
-  background-color: #283149;
+  background: none;
   border: none;
   color: #dbedf3;
   outline: none;
@@ -56,7 +57,7 @@ i {
 
 .submit-btn {
   cursor: pointer;
-  background-color: #283149;
+  background: none;
   border: none;
   color: #404b69;
   font-size: 1.4rem;
@@ -68,6 +69,7 @@ i {
   margin-top: 2rem;
   width: 55vw;
   height: 40vh;
+  z-index: 2;
 }
 
 .second-container {
@@ -136,6 +138,16 @@ i {
   width: 100%;
   height: 80%;
   object-fit: cover;
+}
+
+#wall {
+  height: 45%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: 1;
 }
 
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
@@ -242,6 +254,10 @@ i {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #wall {
+    display: none;
   }
 }
 
