@@ -120,8 +120,7 @@ function cleanSection() {
     infoDiv.innerHTML = '';
 }
 
-//Animation section
-
+//Animation sections
 var deviceWidth = window.matchMedia("(max-width: 767px)");
 
 if(deviceWidth.matches) {

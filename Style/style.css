@@ -64,7 +64,9 @@ i {
 }
 
 .info-div {
-  background-color: #404b69;
+  background: rgba(64, 75, 105, 0.4);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
   margin-top: 2rem;
   width: 55vw;
