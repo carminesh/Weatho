@@ -4,15 +4,16 @@ const apiTimeKey = "insert your key";
 const weatherContainer = document.querySelector('.weather-container');
 const form = document.querySelector('.search-weather');
 const inputText = document.querySelector('.search-input');
+const loaderContainer = document.querySelector('.loader-container');
+const loader = document.querySelector('.loader');
 const infoDiv = document.createElement('div');
-
 
 let cityName;
 let time;
 
+
 //Event listener section
 inputText.addEventListener('input', updateInput);
-
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -40,7 +41,9 @@ async function searchWeather(city) {
     const data = await dataFetch.json();
 
     time = await searchTime(data.coord.lat, data.coord.lon);
+
     displayWeather(data);
+
 }
 
 async function searchTime(latitude, longitude) {
@@ -70,8 +73,6 @@ function displayWeather(dataWeather) {
     const humidity = dataWeather.main.humidity;
     const windSpeed = dataWeather.wind.speed;
 
-
-
     infoDiv.classList.add('info-div');
 
     infoDiv.innerHTML = 
@@ -100,14 +101,21 @@ function displayWeather(dataWeather) {
                     <p>${humidity}%</p>
                 </div>
                 <div class="wind">
-                    <h4>Wind speed</h4>
+                    <h4>Wind</h4>
                     <p>${windSpeed} Km/h</p>
                 </div>
             </div>
         </div>`;
 
-    weatherContainer.appendChild(infoDiv);
+        weatherContainer.appendChild(infoDiv);
+    
 
+
+
+}
+
+function cleanLoader() {
+    weatherContainer.removeChild(weatherContainer.childNodes[5]);  
 }
 
 function cleanSection() {
