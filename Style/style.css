@@ -7,7 +7,7 @@
 body {
   font-family: "Archivo", sans-serif;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,15 +22,17 @@ i {
 .weather-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
-#logo {
+a {
+  text-decoration: none;
   text-align: center;
   color: #404b69;
   font-size: 4rem;
   padding: 1rem;
+  cursor: pointer;
 }
 
 .search-weather {
@@ -44,6 +46,7 @@ i {
 }
 
 .search-input {
+  width: 250px;
   padding: 0.5rem;
   background: none;
   border: none;
@@ -143,7 +146,7 @@ i {
 }
 
 #wall {
-  height: 45%;
+  height: 47%;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -336,6 +339,10 @@ i {
   .wind {
     padding-left: 2rem;
   }
+
+  #wall {
+    display: none;
+  }
 }
 
 /* ----------- iPad Pro 12.9" ----------- */
@@ -375,6 +382,10 @@ i {
     justify-content: flex-start;
   }
 
+  .info-city {
+    padding-top: 2.2rem;
+  }
+
   .info-weather {
     padding-top: 5rem;
     display: flex;
@@ -406,5 +417,9 @@ i {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  #wall {
+    display: none;
   }
 }
