@@ -62,10 +62,16 @@ i {
   font-size: 1.4rem;
 }
 
-.second-container {
+.info-div {
   background-color: #404b69;
   border-radius: 10px;
   margin-top: 2rem;
+  width: 55vw;
+  height: 40vh;
+  transition: all 1s ease-in-out;
+}
+
+.second-container {
   width: 55vw;
   height: 40vh;
   display: flex;

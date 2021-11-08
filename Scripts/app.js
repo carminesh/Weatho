@@ -1,6 +1,5 @@
 const apiKey = "insert your key";
 const apiTimeKey = "insert your key";
-
 const weatherContainer = document.querySelector('.weather-container');
 const form = document.querySelector('.search-weather');
 const inputText = document.querySelector('.search-input');
@@ -121,3 +120,8 @@ function cleanLoader() {
 function cleanSection() {
     infoDiv.innerHTML = '';
 }
+
+/*Animation section*/
+
+gsap.from('#logo', {scale: 2, opacity:-1, duration: 1})
+gsap.from('.search-weather', {scale: 2, opacity:-1, duration: 1});
