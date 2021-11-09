@@ -13,6 +13,6 @@ The site has a simple and minimal interface so that the user can quickly search 
 
 ![Preview](https://i.gyazo.com/5ab5b58d26c1f9de364638d266a17235.jpg)
 
-All the icons representing the various weather states have been designed in such a way as to be able to integrate perfectly with the remaining part of the UI.
+![Preview](https://i.gyazo.com/c73290cc0ad8c25082e7b992fb119e81.jpg)
 
-![Preview](https://i.gyazo.com/e485a06939ece717a0bd71c0695823f8.png)
+All the icons representing the various weather states have been designed in such a way as to be able to integrate perfectly with the remaining part of the UI.
