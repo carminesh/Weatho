@@ -1,5 +1,5 @@
-const apiKey = "insert your key";
-const apiTimeKey = "insert your key";
+const apiKey = "insert your weather API key here";
+const apiTimeKey = "insert your time zone API key here";
 const weatherContainer = document.querySelector('.weather-container');
 const form = document.querySelector('.search-weather');
 const inputText = document.querySelector('.search-input');
@@ -29,36 +29,48 @@ function updateInput() {
 //Fetch weather data from current weather API
 async function searchWeather(city) {
 
-    const dataFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`, {
+    try {
+        const dataFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json'
         }
-    });
+        });
 
-    const data = await dataFetch.json();
+        const data = await dataFetch.json();
 
-    time = await searchTime(data.coord.lat, data.coord.lon);
+        time = await searchTime(data.coord.lat, data.coord.lon);
 
-    displayWeather(data);
+        displayWeather(data);
+
+    } catch(e) {
+        displayError();
+        console.error(e);
+    }
+    
 
 }
-
 
 //Fetch time-info data from TimeZone API
 async function searchTime(latitude, longitude) {
 
-    const dataFetch = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`, {
+    try {
+        const dataFetch = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json'
         }
-    });
+        });
 
-    const data = await dataFetch.json();
+        const data = await dataFetch.json();
 
-    console.log(data);
-    return data.formatted;
+        return data.formatted;
+    } catch(e) {
+
+        displayError();
+        console.error(e);
+    }
+    
 
 }
 
@@ -76,7 +88,7 @@ function displayWeather(dataWeather) {
 
     infoDiv.classList.add('info-div');
 
-    infoDiv.innerHTML = 
+    infoDiv.innerHTML =
         `
         <div class="second-container">
             <div class="info-city">
@@ -108,10 +120,26 @@ function displayWeather(dataWeather) {
             </div>
         </div>`;
 
-        weatherContainer.appendChild(infoDiv);
+    weatherContainer.appendChild(infoDiv);
+
+
+
+
+}
+
+//Function to manage div representation when error occure
+function displayError() {
     
+    infoDiv.innerHTML = 
+    `
+        <div class="error-container">
+            <h2 id="error-text">
+                Error during loading, please try again or insert correct data
+            </h2>
+        </div>
+    `
 
-
+    weatherContainer.appendChild(infoDiv);
 
 }
 
@@ -123,14 +151,14 @@ function cleanSection() {
 //Animation sections
 var deviceWidth = window.matchMedia("(max-width: 767px)");
 
-if(deviceWidth.matches) {
+if (deviceWidth.matches) {
 
     var tl = gsap.timeline();
-    tl.from('.weather-container', {scale: 1.2, duration: 0.5, ease: 'Power2.easeInOut'})
-    tl.from('.weather-container', {y: 300, duration: 1, ease: 'Power2.easeInOut'});
+    tl.from('.weather-container', { scale: 1.2, duration: 0.5, ease: 'Power2.easeInOut' })
+    tl.from('.weather-container', { y: 300, duration: 1, ease: 'Power2.easeInOut' });
 
 } else {
-    gsap.from('#wall', {opacity:-1, duration:2});
-    gsap.from('#logo', {scale: 2, opacity:-1, duration: 1, ease: 'Power2.easeInOut'})
-    gsap.from('.search-weather', {scale: 2, opacity:-1, duration: 1, ease: 'Power2.easeInOut'}); 
+    gsap.from('#wall', { opacity: -1, duration: 2 });
+    gsap.from('#logo', { scale: 2, opacity: -1, duration: 1, ease: 'Power2.easeInOut' })
+    gsap.from('.search-weather', { scale: 2, opacity: -1, duration: 1, ease: 'Power2.easeInOut' });
 }

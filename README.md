@@ -7,7 +7,7 @@ Weatho is a web app thats uses OpenWeather API and TimeZone API, to search and s
 In order to make the site work, you have to substitute the API weather key and the time zone API key in the app.js file, with your own API key.
 You can request the OpenWeather API key on the following link [Weather API](https://openweathermap.org/api) and the time zone API key at the following link [TimeZone API](https://timezonedb.com/)
 
-## Preview
+## Preview
 
 The site has a simple and minimal interface so that the user can quickly search for the information he wants.
 

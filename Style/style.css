@@ -155,6 +155,20 @@ a {
   z-index: 1;
 }
 
+.error-container {
+  width: 55vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#error-text {
+  color: #dbedf3;
+  text-align: center;
+}
+
 /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
